@@ -1,0 +1,13 @@
+<h1>Galgje :)</h1>
+
+<ul>
+Match History:
+  <% @games.each do |game| %>
+    <li>
+     <a href="<%= game_path(game) %>">
+        <%= game.word %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Game", new_game_path %>

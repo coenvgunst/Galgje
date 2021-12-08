@@ -1,0 +1,52 @@
+<h1>Galgje :)</h1>
+<h1><% @current_game.word.chars %></h1>
+
+<h1><% @guessed_letters = @current_game.guesses.pluck(:letter) %>
+
+<% @current_game.word.chars.each do |char| %>
+  <% if char.in?(@guessed_letters) %>
+    <%= char %> 
+  <% else %>
+    -
+  <% end %>
+<% end %>
+</h1>
+
+<p><%= @current_game.guesses.count %> Pogingen</p>
+<p><%= @current_game.strikes %>/<%= @current_game.max_strikes %> Strikes</p>
+
+<ul>
+Previous Guesses:
+  <% @current_game.guesses.where.not(id: nil).each do |guess| %>
+    <li>
+        <%= guess.letter %>
+    </li>
+  <% end %>
+</ul>
+
+
+<h3>Make Guess!</h3>
+<%= form_with url: make_guess_game_path do |form| %>
+  <% if @guess.errors.any? %>
+  <ul>
+    <% @guess.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+
+  <div>
+    <%= form.label :letter %><br>
+    <%= form.text_field :letter %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<li><%= link_to "Give up", game_path(@current_game),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word: MyString
+  strikes: 1.5
+  max_strikes: 1.5
+  gamestate: false
+  guesses: 1.5
+
+two:
+  word: MyString
+  strikes: 1.5
+  max_strikes: 1.5
+  gamestate: false
+  guesses: 1.5
